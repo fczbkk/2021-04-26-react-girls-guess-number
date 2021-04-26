@@ -4,6 +4,7 @@ function initGame () {
   let message = document.querySelector('.message')
   let lowGuess = document.querySelector('.lowGuess')
   let highGuess = document.querySelector('.highGuess')
+  let startAgainButton = document.querySelector('.startAgainButton')
 
   let guessCounter = 0
   let lowGuessNumber = 0
@@ -40,7 +41,12 @@ function initGame () {
     compareGuessedNumber(userGuess)
   }
 
+  function restartGame () {
+    document.location.reload()
+  }
+
   submitButton.addEventListener('click', handleUserInput)
+  startAgainButton.addEventListener('click', restartGame)
 }
 
 function getRandomNumber (min, max) {
