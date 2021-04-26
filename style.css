@@ -162,3 +162,7 @@ button {
   cursor: pointer;
   text-transform: uppercase;
 }
+
+.winNumber {
+  background: #00FFC4;
+}

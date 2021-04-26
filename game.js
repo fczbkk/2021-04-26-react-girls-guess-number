@@ -6,6 +6,7 @@ function initGame () {
   let lowGuess = document.querySelector('.lowGuess')
   let highGuess = document.querySelector('.highGuess')
   let startAgainButton = document.querySelector('.startAgainButton')
+  let winNumber = document.querySelector('.winNumber')
 
   let guessCounter = 0
   let lowGuessNumber = 0
@@ -14,25 +15,31 @@ function initGame () {
   console.log('random number:', randomNumber)
 
   function compareGuessedNumber (guessedNumber) {
-    guessCounter = guessCounter + 1
-    console.log('guess', guessCounter)
 
-    if (randomNumber < guessedNumber) {
-      message.innerHTML = 'Too high'
-      if (highGuessNumber > guessedNumber) {
-        highGuessNumber = guessedNumber
-        highGuess.innerHTML = highGuessNumber
-      }
-    } else if (randomNumber > guessedNumber) {
-      message.innerHTML = 'Too low'
-      if (lowGuessNumber < guessedNumber) {
-        lowGuessNumber = guessedNumber
-        lowGuess.innerHTML = lowGuessNumber
-      }
-    } else if (randomNumber === guessedNumber) {
-      message.innerHTML = 'you win!!! you guess ' + guessCounter + ' times'
+    if ((guessedNumber >= highGuessNumber) || (guessedNumber <= lowGuessNumber)) {
+      message.innerHTML = 'This is obviously wrong'
     } else {
-      message.innerHTML = 'invalid input'
+      guessCounter = guessCounter + 1
+      console.log('guess', guessCounter)
+
+      if (randomNumber < guessedNumber) {
+        message.innerHTML = 'Too high'
+        if (highGuessNumber > guessedNumber) {
+          highGuessNumber = guessedNumber
+          highGuess.innerHTML = highGuessNumber
+        }
+      } else if (randomNumber > guessedNumber) {
+        message.innerHTML = 'Too low'
+        if (lowGuessNumber < guessedNumber) {
+          lowGuessNumber = guessedNumber
+          lowGuess.innerHTML = lowGuessNumber
+        }
+      } else if (randomNumber === guessedNumber) {
+        message.innerHTML = 'you win!!! you guess ' + guessCounter + ' times'
+        winNumber.innerHTML = randomNumber
+      } else {
+        message.innerHTML = 'invalid input'
+      }
     }
 
     userInput.value = ''
@@ -51,6 +58,7 @@ function initGame () {
     message.innerHTML = 'Guess!'
     highGuess.innerHTML = '100'
     lowGuess.innerHTML = '0'
+    winNumber.innerHTML = '?'
 
     submitButton.removeEventListener('click', handleUserInput)
     startAgainButton.removeEventListener('click', restartGame)
