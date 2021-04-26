@@ -1,6 +1,7 @@
 function initGame () {
   let userInput = document.querySelector('.userInput')
   let submitButton = document.querySelector('.submitButton')
+  let guessForm = document.querySelector('.guessForm')
   let message = document.querySelector('.message')
   let lowGuess = document.querySelector('.lowGuess')
   let highGuess = document.querySelector('.highGuess')
@@ -53,12 +54,14 @@ function initGame () {
 
     submitButton.removeEventListener('click', handleUserInput)
     startAgainButton.removeEventListener('click', restartGame)
+    guessForm.removeEventListener('submit', handleUserInput)
 
     initGame()
   }
 
   submitButton.addEventListener('click', handleUserInput)
   startAgainButton.addEventListener('click', restartGame)
+  guessForm.addEventListener('submit', handleUserInput)
 }
 
 function getRandomNumber (min, max) {
