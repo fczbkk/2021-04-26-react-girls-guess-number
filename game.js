@@ -33,6 +33,9 @@ function initGame () {
     } else {
       message.innerHTML = 'invalid input'
     }
+
+    userInput.value = ''
+    userInput.focus()
   }
 
   function handleUserInput (event) {
@@ -42,7 +45,16 @@ function initGame () {
   }
 
   function restartGame () {
-    document.location.reload()
+    // document.location.reload()
+
+    message.innerHTML = 'Guess!'
+    highGuess.innerHTML = '100'
+    lowGuess.innerHTML = '0'
+
+    submitButton.removeEventListener('click', handleUserInput)
+    startAgainButton.removeEventListener('click', restartGame)
+
+    initGame()
   }
 
   submitButton.addEventListener('click', handleUserInput)
