@@ -1,19 +1,36 @@
 function initGame () {
   let userInput = document.querySelector('.userInput')
   let submitButton = document.querySelector('.submitButton')
+  let message = document.querySelector('.message')
+  let lowGuess = document.querySelector('.lowGuess')
+  let highGuess = document.querySelector('.highGuess')
 
+  let guessCounter = 0
+  let lowGuessNumber = 0
+  let highGuessNumber = 100
   let randomNumber = getRandomNumber(0, 100)
   console.log('random number:', randomNumber)
 
   function compareGuessedNumber (guessedNumber) {
+    guessCounter = guessCounter + 1
+    console.log('guess', guessCounter)
+
     if (randomNumber < guessedNumber) {
-      console.log('too high')
+      message.innerHTML = 'Too high'
+      if (highGuessNumber > guessedNumber) {
+        highGuessNumber = guessedNumber
+        highGuess.innerHTML = highGuessNumber
+      }
     } else if (randomNumber > guessedNumber) {
-      console.log('too low')
+      message.innerHTML = 'Too low'
+      if (lowGuessNumber < guessedNumber) {
+        lowGuessNumber = guessedNumber
+        lowGuess.innerHTML = lowGuessNumber
+      }
     } else if (randomNumber === guessedNumber) {
-      console.log('you win!!!')
+      message.innerHTML = 'you win!!! you guess ' + guessCounter + ' times'
     } else {
-      console.log('invalid input')
+      message.innerHTML = 'invalid input'
     }
   }
 

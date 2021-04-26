@@ -10,7 +10,7 @@
     <script src="game.js"></script>
   </head>
   <body>
-    <div class="alert"><p>Too High!</p></div>
+    <div class="alert"><p class="message">Guess!</p></div>
 
     <header>
       <h1 id="headline">Can you guess the secret number?</h1>
@@ -30,14 +30,14 @@
       <div class="mainSection">
         <h2>Secret Number</h2>
         <div class="secretNumber">
-          <p class="symbol number rightAligned">0</p>
+          <p class="symbol number rightAligned lowGuess">0</p>
           <p class="symbol arrow">&lt;</p>
           <div class="star">
             <img src="./star.svg" />
             <p class="symbol">?</p>
           </div>
           <p class="symbol arrow">&gt;</p>
-          <p class="symbol number">100</p>
+          <p class="symbol number highGuess">100</p>
         </div>
       </div>
     </div>
