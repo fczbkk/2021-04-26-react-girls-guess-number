@@ -7,6 +7,7 @@ function initGame () {
   let highGuess = document.querySelector('.highGuess')
   let startAgainButton = document.querySelector('.startAgainButton')
   let winNumber = document.querySelector('.winNumber')
+  let alert = document.querySelector('.alert')
 
   let guessCounter = 0
   let lowGuessNumber = 0
@@ -14,29 +15,34 @@ function initGame () {
   let randomNumber = getRandomNumber(0, 100)
   console.log('random number:', randomNumber)
 
+  function updateMessage (content, color) {
+    message.innerHTML = content
+    alert.style.backgroundColor = color
+  }
+
   function compareGuessedNumber (guessedNumber) {
 
     if ((guessedNumber >= highGuessNumber) || (guessedNumber <= lowGuessNumber)) {
-      message.innerHTML = 'This is obviously wrong'
+      updateMessage('This is obviously wrong', 'gray')
     } else {
       guessCounter = guessCounter + 1
       console.log('guess', guessCounter)
 
       if (randomNumber < guessedNumber) {
-        message.innerHTML = 'Too high'
         if (highGuessNumber > guessedNumber) {
           highGuessNumber = guessedNumber
           highGuess.innerHTML = highGuessNumber
         }
+        updateMessage('Too high', 'red')
       } else if (randomNumber > guessedNumber) {
-        message.innerHTML = 'Too low'
         if (lowGuessNumber < guessedNumber) {
           lowGuessNumber = guessedNumber
           lowGuess.innerHTML = lowGuessNumber
         }
+        updateMessage('Too low', 'blue')
       } else if (randomNumber === guessedNumber) {
-        message.innerHTML = 'you win!!! you guess ' + guessCounter + ' times'
         winNumber.innerHTML = randomNumber
+        updateMessage('you win!!! you guess ' + guessCounter + ' times', 'gold')
       } else {
         message.innerHTML = 'invalid input'
       }
@@ -59,6 +65,8 @@ function initGame () {
     highGuess.innerHTML = '100'
     lowGuess.innerHTML = '0'
     winNumber.innerHTML = '?'
+
+    alert.style.backgroundColor = '#ec028c'
 
     submitButton.removeEventListener('click', handleUserInput)
     startAgainButton.removeEventListener('click', restartGame)
