@@ -12,7 +12,7 @@ function initGame () {
   let guessCounter = 0
   let lowGuessNumber = 0
   let highGuessNumber = 100
-  let randomNumber = getRandomNumber(0, 100)
+  let randomNumber = getRandomNumber(1, 99)
   console.log('random number:', randomNumber)
 
   function updateMessage (content, color) {
